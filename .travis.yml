@@ -29,3 +29,6 @@ deploy:
   script: |
     echo "$DOCKER_PASS" | docker login -u "$DOCKER_USERNAME" --password-stdin
     docker push meyer1994/gitserver
+  on:
+    branch: master
+    python: '3.8'
