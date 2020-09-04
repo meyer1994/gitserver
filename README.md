@@ -42,6 +42,13 @@ Note that the directory where the code is saved is created using python's
 `tempfile` module. Which means, when the program exists, or reloads, it **will**
 be deleted.
 
+## Docker
+
+There is also a [docker][7] image if you prefer that:
+
+```bash
+$ docker run --rm -it -p 8000:8000 meyer1994/gitserver
+```
 
 ## Thanks
 
@@ -58,3 +65,4 @@ repositories. They helped me understand a lot about git http backend.
 [4]: https://github.com/dvdotsenko/git_http_backend.py
 [5]: https://github.com/schacon/grack
 [6]: https://www.git-scm.com/book/fa/v2/Git-on-the-Server-Smart-HTTP
+[7]: https://hub.docker.com/repository/docker/meyer1994/gitserver
