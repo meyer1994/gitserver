@@ -18,5 +18,5 @@ before_script:
 
 script:
   - git remote add local http://localhost:8000/test
-  - git push local
+  - git push local master
   - git clone http://localhost:8000/test test
