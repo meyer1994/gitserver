@@ -17,6 +17,6 @@ before_script:
   - sleep 5
 
 script:
-  - git remote add http://localhost:8000/test
+  - git remote add local http://localhost:8000/test
   - git push local
   - git clone http://localhost:8000/test test
