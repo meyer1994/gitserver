@@ -1,0 +1,22 @@
+os: linux
+dist: bionic
+
+language: python
+python:
+  - '3.7'
+  - '3.8'
+
+cache:
+  pip: true
+
+install:
+  - pip install -r requirements.txt
+
+before_script:
+  - uvicorn app:app --log-level error > /dev/null & disown
+  - sleep 5
+
+script:
+  - git remote add http://localhost:8000/test
+  - git push local
+  - git clone http://localhost:8000/test test
