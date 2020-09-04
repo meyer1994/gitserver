@@ -1,6 +1,9 @@
 os: linux
 dist: bionic
 
+services:
+  - docker
+
 language: python
 python:
   - '3.7'
@@ -10,13 +13,16 @@ cache:
   pip: true
 
 install:
-  - pip install -r requirements.txt
-
-before_script:
-  - uvicorn app:app --log-level error > /dev/null & disown
-  - sleep 5
+  - docker build -t meyer1994/gitserver .
+  - docker run --rm -itd -p 8000:8000 meyer1994/gitserver
 
 script:
   - git remote add local http://localhost:8000/test
   - git push local master
   - git clone http://localhost:8000/test test
+
+deploy:
+  provider: script
+  script: >
+    echo "$DOCKER_PASS" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    docker push
