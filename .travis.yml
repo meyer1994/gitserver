@@ -14,7 +14,10 @@ cache:
 
 install:
   - docker build -t meyer1994/gitserver .
+
+before_script:
   - docker run --rm -itd -p 8000:8000 meyer1994/gitserver
+  - sleep 5
 
 script:
   - git remote add local http://localhost:8000/test
