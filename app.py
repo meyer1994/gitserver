@@ -23,7 +23,6 @@ class Service(str, Enum):
 @app.get('/{path}/info/refs')
 async def inforefs(path: str, service: Service):
     path = os.path.join(TEMPDIR.name, path)
-    print(path)
 
     # Create repo if does not exists
     if not os.path.exists(path):
