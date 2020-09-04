@@ -25,4 +25,4 @@ deploy:
   provider: script
   script: >
     echo "$DOCKER_PASS" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    docker push
+    docker push meyer1994/gitserver
