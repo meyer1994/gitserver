@@ -14,14 +14,12 @@ install:
   - pip install -r requirements.txt
 
 before_script:
-  - 2>/dev/null 1>&2 uvicorn app:app & disown
+  - uvicorn --log-level error app:app & disown
   - sleep 5
 
 script:
-  - git init test
-  - cd test
-  - echo "test" > test.txt
-  - git add test.txt
-  - git commit -m "test file"
-  - git remote add local http://localhost:8000/test
+  - git clone https://github.com/git/git.git
+  - cd git
+  - git remote add local http://localhost:8000/git
   - git push local master
+
