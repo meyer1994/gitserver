@@ -20,6 +20,6 @@ before_script:
 script:
   - git clone https://github.com/git/git.git
   - cd git
-  - git remote add local http://localhost:8000/git
+  - git remote add local http://admin:admin@localhost:8000/git
   - git push local master
 
