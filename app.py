@@ -1,18 +1,21 @@
 import io
 import os
 import shlex
+import secrets
 import tempfile
 import subprocess
 from enum import Enum
 from subprocess import PIPE
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends, HTTPException
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from starlette.requests import Request
 from starlette.responses import StreamingResponse
 
 TEMPDIR = tempfile.TemporaryDirectory()
 
 app = FastAPI()
+security = HTTPBasic()
 
 
 class Service(str, Enum):
@@ -20,8 +23,16 @@ class Service(str, Enum):
     upload = 'git-upload-pack'
 
 
+def validate(credentials: HTTPBasicCredentials = Depends(security)):
+    username = secrets.compare_digest(credentials.username, 'admin')
+    password = secrets.compare_digest(credentials.password, 'admin')
+    if not (username and password):
+        raise HTTPException(status_code=401)
+    return credentials.username
+
+
 @app.get('/{path}/info/refs')
-async def inforefs(path: str, service: Service):
+async def info(path: str, service: Service, username: str = Depends(validate)):
     path = os.path.join(TEMPDIR.name, path)
 
     # Create repo if does not exists
