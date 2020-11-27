@@ -18,7 +18,7 @@ install:
   - docker build . -t gitserver
 
 before_script:
-  - docker run --rm --itd -p 8000:8000 gitserver
+  - docker run --rm -itd -p 8000:8000 gitserver
   - sleep 5
   - docker ps -a
 
