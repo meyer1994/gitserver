@@ -1,6 +1,9 @@
 os: linux
 dist: bionic
 
+services:
+  - docker
+
 language: python
 python:
   - '3.6'
@@ -11,15 +14,16 @@ cache:
   pip: true
 
 install:
-  - pip install -r requirements.txt
+  - pip install flake8
+  - docker build . -t gitserver
 
 before_script:
-  - uvicorn --log-level error app:app & disown
+  - docker run --rm --itd -p 8000:8000 gitserver
   - sleep 5
+  - docker ps -a
 
 script:
   - git clone https://github.com/git/git.git
   - cd git
   - git remote add local http://admin:admin@localhost:8000/git
   - git push local master
-
