@@ -1,12 +1,15 @@
-FROM python:slim
-
-COPY . /app
+FROM python:3.8-slim
 
 WORKDIR /app
 
-RUN apt update && apt install -y git
+RUN apt update \
+    && apt install -y git \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY ./requirements.txt ./
 RUN pip install -r requirements.txt
 
-EXPOSE 8000
+COPY ./ ./
 
-CMD python -m uvicorn app:app --host 0.0.0.0 --port 8000
+EXPOSE 8000
+CMD python -m uvicorn gitserver:app --host 0.0.0.0 --port 8000
