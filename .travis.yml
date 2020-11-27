@@ -23,6 +23,7 @@ before_script:
   - docker ps -a
 
 script:
+  - flake8 --statistics gitserver/
   - git clone https://github.com/git/git.git
   - cd git
   - git remote add local http://admin:admin@localhost:8000/git
