@@ -1,6 +1,6 @@
 # gitserver
 
-[![Build Status](https://travis-ci.com/meyer1994/gitserver.svg?branch=master)](https://travis-ci.com/meyer1994/gitserver)
+[![build](https://github.com/meyer1994/gitserver/actions/workflows/build.yml/badge.svg)](https://github.com/meyer1994/gitserver/actions/workflows/build.yml)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
 A very simple git [smart HTTP][6] server.
