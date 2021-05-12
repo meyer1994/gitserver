@@ -38,6 +38,9 @@ $ git push local
 $ git clone http://localhost:8000/reponame
 ```
 
+Note that the username/password is currently 'admin' for both. This is found in the [`gitserver/app.py`](./gitserver/app.py) file,
+and you can edit that file if you'd like to change the username/password.
+
 Note that the directory where the code is saved is created using python's
 `tempfile` module. Which means, when the program exists, or reloads, it **will**
 be deleted.
