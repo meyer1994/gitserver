@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import io
 import stat
 from typing import IO
@@ -13,7 +15,7 @@ class Git(object):
         self.path = Path(path)
 
     @staticmethod
-    def init(path: str) -> 'Git':
+    def init(path: str) -> Git:
         Runner('git')\
             .arg('init')\
             .arg('--bare')\
